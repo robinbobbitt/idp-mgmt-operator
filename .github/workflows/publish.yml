@@ -1,6 +1,6 @@
 # Copyright Red Hat
 
-name: Go
+name: Publish
 
 on:
   push:
@@ -17,6 +17,10 @@ jobs:
       uses: actions/setup-go@v2
       with:
         go-version: 1.16
+
+    - name: Set the VERSION
+      run: |
+        echo "VERSION=0.1.1-$(date -u +'%Y%m%d-%H-%M-%S')" >> $GITHUB_ENV
 
     - name: Install Dependencies and Publish
       env:

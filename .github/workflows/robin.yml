@@ -1,0 +1,18 @@
+# Copyright Red Hat
+
+name: Robin
+
+on:
+  push:
+    branches: [ version ]
+
+jobs:
+  publish:
+    if: github.repository_owner == 'robinbobbitt'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set the VERSION
+      run: |
+        echo "VERSION=0.1.1-$(date -u +'%Y%m%d-%H-%M-%S')" >> $GITHUB_ENV
+    - name: Echo the version
+      run: echo "hello $VERSION"
